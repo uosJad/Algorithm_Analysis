@@ -1,8 +1,5 @@
 import java.util.*;
 
-/**
- * Created by jason on 12/7/17.
- */
 public class Graph {
 
     private int[][] edges;

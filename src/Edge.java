@@ -1,6 +1,4 @@
-/**
- * Created by jason on 12/7/17.
- */
+
 public class Edge {
 
     private int vertex1, vertex2;
