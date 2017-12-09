@@ -1,13 +1,27 @@
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by jason on 12/8/17.
  */
-public class EdgeListUtil {
-    public EdgeListUtil(){}
+public class UtilClass {
+    public UtilClass(){}
+
+    public List<Integer> randomList(int n){
+        Random rand = new Random();
+        List<Integer> temp = new ArrayList<>();
+        for (int i = 0; i < n; i++){
+            temp.add(rand.nextInt(100));
+        }
+        return temp;
+    }
+
+    public void printList(List<Integer> list){
+        Iterator<Integer> it = list.iterator();
+        while (it.hasNext()){
+            System.out.print(it.next() + ", ");
+        }
+        System.out.println();
+    }
 
     /**
      * Sort a list of edges

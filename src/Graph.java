@@ -78,7 +78,7 @@ public class Graph {
      * @return Sorted ArrayList of Edges
      */
     public List<Edge> getSortedVertexSet(){
-        return new EdgeListUtil().sortList(getEdgeArray());
+        return new UtilClass().sortList(getEdgeArray());
     }
 
 
