@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class MinSpan {
@@ -45,17 +46,17 @@ public class MinSpan {
             result.add(new Edge(nearest.get(minIndex), min, minIndex));
             minDist.set(minIndex, -2); //set the distance to the new node to be -2 to indicate already visited
 
-            //if the edge from the new added node is smaller than all others, add thatbas the new min edge
+            //if the edge from the new added node is smaller than all others, add that as the new min edge
             for (int i = 1; i < minDist.size(); i++){
-                if (minDist.get(i) == -1 && g.getWeight(i, minIndex) != -1){
+                if (minDist.get(i) == -1 && (g.getWeight(i, minIndex) != -1 && g.getWeight(i, minIndex) != 0)){
                     minDist.set(i, g.getWeight(i, minIndex));
                     nearest.set(i, minIndex);
                 }
-                else if (g.getWeight(i, minIndex) != -1 && g.getWeight(i, minIndex) < minDist.get(i) ){
+                else if (g.getWeight(i, minIndex) != -1 && g.getWeight(i, minIndex) != 0 && g.getWeight(i, minIndex) < minDist.get(i) ){
                     minDist.set(i, g.getWeight(i, minIndex));
                     nearest.set(i, minIndex);
                 }
-                else if (g.getWeight(i, minIndex) != -1 && minDist.get(i) == 0){
+                else if (g.getWeight(i, minIndex) != -1 && g.getWeight(i, minIndex) != 0 && minDist.get(i) == 0){
                     minDist.set(i, g.getWeight(i, minIndex));
                     nearest.set(i, minIndex);
                 }
@@ -69,9 +70,27 @@ public class MinSpan {
 
         List<Edge> sortedGraph = g.getSortedVertexSet();
         List<Edge> result = new ArrayList<>();
+        DisjointSet ds = new DisjointSet(g.getSize());
 
-        //TODO
+        Iterator<Edge> it = sortedGraph.iterator();
 
+        while (it.hasNext()) {
+
+            Edge smallest = it.next();
+            List<Integer> s1 = ds.find(smallest.getVertex1());
+            List<Integer> s2 = ds.find(smallest.getVertex2());
+
+            if (!ds.isInSameSet(s1, s2)){
+                ds.merge(smallest.getVertex1(), smallest.getVertex2());
+                result.add(smallest);
+            }
+
+            if (result.size() == g.getSize() -1){
+                break;
+            }
+
+            if (!it.hasNext()) return null;
+        }
 
         return result;
     }

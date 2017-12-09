@@ -15,5 +15,8 @@ public class Driver {
         System.out.println();
         elu.printEdges(minSpan.prims(g));
 
+        System.out.println();
+        elu.printEdges(minSpan.kruskals(g));
+
     }
 }

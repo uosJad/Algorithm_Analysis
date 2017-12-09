@@ -90,7 +90,7 @@ public class Graph {
         List<Edge> e = new ArrayList<>();
         for (int i = 0; i < vertexCount; i++) {
             for (int j = 0; j <= i; j++) {
-                if (this.edges[i][j] != 0 ){
+                if (edges[i][j] != -1 && edges[i][j] != 0){
                     e.add(new Edge(i, edges[i][j], j));
                 }
             }
