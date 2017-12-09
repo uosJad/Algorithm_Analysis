@@ -14,6 +14,8 @@ public class Graph {
         }
     }
 
+    public int getSize(){ return edges.length; }
+    public int getSize(int i){ return edges[i].length; }
     public int getVertexCount() {
         return vertexCount;
     }
@@ -76,7 +78,7 @@ public class Graph {
      * @return Sorted ArrayList of Edges
      */
     public List<Edge> getSortedVertexSet(){
-        return sortList(getEdgeArray());
+        return new EdgeListUtil().sortList(getEdgeArray());
     }
 
 
@@ -89,40 +91,11 @@ public class Graph {
         for (int i = 0; i < vertexCount; i++) {
             for (int j = 0; j <= i; j++) {
                 if (this.edges[i][j] != 0 ){
-                    e.add(new Edge(i, j, edges[i][j]));
+                    e.add(new Edge(i, edges[i][j], j));
                 }
             }
         }
         return e;
-    }
-
-    /**
-     * Sort a list of edges
-     * @param e
-     * @return sorted list
-     */
-    private List<Edge> sortList(List<Edge> e){
-        Collections.sort(e, new Comparator<Edge>() {
-            @Override
-            public int compare(Edge o1, Edge o2) {
-                return o1.getWeight() - o2.getWeight();
-            }
-        });
-
-        return e;
-    }
-
-    /**
-     * Util function for printing the edges of a List
-     * @param e
-     */
-    public void printEdges(List<Edge> e){
-        Iterator<Edge> it = e.iterator();
-        while (it.hasNext()){
-            Edge temp = it.next();
-            System.out.print("{" + temp.getVertex1() + ", " + temp.getVertex2() + ", " + temp.getWeight() + "} ");
-        }
-        System.out.println();
     }
 
     /**

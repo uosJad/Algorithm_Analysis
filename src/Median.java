@@ -1,3 +1,6 @@
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class Median {
 
@@ -6,14 +9,12 @@ public class Median {
 
     }
 
-    public int sortMedian(){
-
-        //TODO
-
-        return -1;
+    public int sortMedian(List<Integer> arr){
+        Collections.sort(arr);
+        return arr.get(arr.size()/2);
     }
 
-    public  int superMedian(){
+    public  int superMedian(int[] arr){
 
         //TODO
 

@@ -5,7 +5,7 @@ public class Edge {
     private int weight;
 
 
-    public Edge(int v1, int v2, int e){
+    public Edge(int v1, int e, int v2){
         vertex1 = v1;
         vertex2 = v2;
         weight = e;
